@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Workout Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>FitTrack</h1>
+            <nav>
+                <button id="today-btn" class="active">Today</button>
+                <button id="history-btn">History</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="today-view" class="active-view">
+                <div class="workout-header">
+                    <h2>Today's Workout</h2>
+                    <button id="add-workout-btn" class="action-btn">
+                        <i class="fas fa-plus"></i> Add Exercise
+                    </button>
+                </div>
+
+                <div id="workout-list"></div>
+
+                <div class="workout-actions">
+                    <button id="complete-workout-btn" class="primary-btn">
+                        Complete Workout
+                    </button>
+                </div>
+            </section>
+
+            <section id="history-view">
+                <div class="history-header">
+                    <h2>Workout History</h2>
+                </div>
+                <div id="history-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Exercise Modal -->
+    <div id="exercise-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Exercise</h3>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exercise-name">Exercise Name</label>
+                    <input type="text" id="exercise-name" placeholder="e.g., Bench Press">
+                </div>
+
+                <div class="form-group">
+                    <label for="exercise-type">Exercise Type</label>
+                    <select id="exercise-type">
+                        <option value="strength">Strength Training</option>
+                        <option value="cardio">Cardio</option>
+                    </select>
+                </div>
+
+                <!-- Strength Training Fields -->
+                <div id="strength-fields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sets">Sets</label>
+                            <input type="number" id="sets" min="1" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="reps">Reps (default)</label>
+                            <input type="number" id="reps" min="1" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (default)</label>
+                            <input type="number" id="weight" min="0" step="2.5" placeholder="lbs">
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="customize-sets-btn" class="secondary-btn">Customize Individual Sets</button>
+                    
+                    <div id="custom-sets-container" style="display: none">
+                        <!-- Custom sets will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Cardio Fields -->
+                <div id="cardio-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="cardio-equipment">Equipment</label>
+                        <select id="cardio-equipment">
+                            <option value="treadmill">Treadmill</option>
+                            <option value="elliptical">Elliptical</option>
+                            <option value="bike">Stationary Bike</option>
+                            <option value="stairmaster">StairMaster</option>
+                            <option value="rower">Rowing Machine</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="duration">Duration (minutes)</label>
+                            <input type="number" id="duration" min="1" value="30">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="speed">Speed</label>
+                            <input type="number" id="speed" min="0" step="0.1" placeholder="mph/level">
+                        </div>
+                        <div class="form-group">
+                            <label for="incline">Incline/Resistance</label>
+                            <input type="number" id="incline" min="0" max="15" step="0.5" placeholder="level/percent">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="distance">Distance (miles)</label>
+                            <input type="number" id="distance" min="0" step="0.1" placeholder="miles">
+                        </div>
+                        <div class="form-group">
+                            <label for="calories-burned">Calories</label>
+                            <input type="number" id="calories-burned" min="0" placeholder="calories">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="heart-rate">Avg. Heart Rate (bpm)</label>
+                        <input type="number" id="heart-rate" min="0" max="220" placeholder="bpm">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" placeholder="Add any notes about this exercise..."></textarea>
+                </div>
+
+                <button id="save-exercise" class="primary-btn">Save Exercise</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
